@@ -1,0 +1,42 @@
+spring:
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#  zipkin:
+#    enabled: true
+#    base-url: http://localhost:8080/api/v2/spans
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/userresistration
+    username: root
+    password: root
+  application:
+    name: USER-REGISTRATION
+  config:
+    import: configserver:http://localhost:8086
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8080/eureka
+server:
+  port: 8084
+  servlet:
+    context-path: /userregistration
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:8080/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+logging:
+  level:
+    root: info
+    web: debug
